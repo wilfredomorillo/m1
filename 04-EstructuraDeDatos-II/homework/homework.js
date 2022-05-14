@@ -11,10 +11,13 @@
 // search: Busca un valor dentro de la lista. Puede recibir un valor o una función. Si no hubiera resultados, devuelve null.
 
 function LinkedList() {
-
+this.length= 0
+this.head= null
 }
 
 function Node(value){
+  this.value= value
+  this.netx= null
 
 }
 

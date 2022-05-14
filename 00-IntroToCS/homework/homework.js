@@ -7,15 +7,18 @@ function BinarioADecimal(num) {
   // luego tengo q hacer un ciclo q me va a ir recorriendo este numero hasta alcance elsu exponente determinado 
   //agrupa su numer} y concatenarlo al anterior 
   //retormar el resultado 
-
-  let angelica= num.split("").reverse()
-  let result = 0
-  for( var i= 0 ; i <angelica.length; i++){
-    var wilfredo = 2**i
-    result= result + wilfredo * angelica[i]
-
-  }
-return result
+/*let data = num.split("").reverse()
+let resultado = 0
+for(var i = 0; i < data.length ; i++ ){
+  var dato = 2**i
+  resultado= resultado+ dato*data[i]
+}
+return resultado*/
+var decimal= 0
+for(var i = 0; i < num.length ; i++ ){
+  decimal=decimal + num[i] *2** (num.length-1-i)
+}
+return decimal 
 }
 
 function DecimalABinario(num) {
@@ -23,14 +26,13 @@ function DecimalABinario(num) {
   //para hacer de decimal a binario se tiene q 
   //dividir por la base 2 quedarce con el resto y ir dividiendo hasta q no se pueda dividir mas 
   //por lo que ecesitamos hacer un ciclo whaile (num >0) ir dividiendo el numero ente 2 redondear el resto y segur dividiendo 
-let resultado = ""
-  while (num>0){
- resultado= (num%2)+ resultado
- num= Math.floor(num/2)
+  let result= ""
+  while (num> 0){
+    result= (num %2)+ result
+    num=Math.floor(num/2)
   }
-return resultado
+  return result
 }
-
 module.exports = {
   BinarioADecimal,
   DecimalABinario,

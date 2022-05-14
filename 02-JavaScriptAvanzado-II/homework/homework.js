@@ -1,5 +1,7 @@
 'use strict'
 
+const { concurrency } = require("@11ty/eleventy-cache-assets")
+
 function counter() {
   // Retorna una funcion que cuando sea invocada retorne un valor creciente.
   // el primer valor deberia ser 1.
@@ -7,6 +9,11 @@ function counter() {
   // ejemplo: const newCounter = counter();
   // newCounter(); // 1
   // newCounter(); // 2
+ var couter = 1
+ return function() {
+   return couter++
+ }
+ 
 }
 
 function cacheFunction(cb) {
@@ -20,8 +27,23 @@ function cacheFunction(cb) {
   // si invocas la function que retornaste con 5, adentro deberia invocar cb(5) y retornar 25.
   // si la invocas de nuevo con 5, deberia retornar 25 (guardado previament en el cache)
   // Tips, usá un objeto donde cada propiedad sea un argumento, y el valor el resultado.
-  // usá hasOwnProperty!
+  // usá hasOwnProperty!= el metodo de un objetro 
+/* crear un ojetos que sera nuestr cache lo cualñ es nuestro var cache= {}
+esta fincion recibe una funcion con un argumento qe sera cb
+ creando una funcion auxiliar que va a reornar el valor de cb multiplicado por si mismo 
+ y esta misma lo guardara en cache 
+*/
+var cache= {}
+return function(x){
+  if(cache.hasOwnProperty(x)) {
+    return cache[x]}
+    var aux= cb(x)
+    cache[x]= aux
+    return aux
+  }
 }
+
+
 
 // Bind
 
@@ -41,8 +63,8 @@ function getNombre(){
  // Escribir código, sin modificar lo que ya se encuentra escrito arriba, para poder llamar al método getNombre para obtener primero el nombre del instructor y luego para obtener el nombre del alumno.
 // Modificar los undefined por el código correspondiente en cada caso
 // Pista, tenes que bindear el this!
-let getNombreInstructor = undefined;
-let getNombreAlumno = undefined;
+let getNombreInstructor = getNombre.bind(instructor) ;
+let getNombreAlumno = getNombre.bind(alumno);
 
 
 /*Guardar en las siguientes tres variables una función que devuelva una cadena utilizando la función "crearCadena"
@@ -61,12 +83,11 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena){
 // Modificar los undefined por el código correspondiente en cada caso
 // Pista, tenes que usar bind para "bindear" algunos parámetros de la función crearCadena.
 
-let textoAsteriscos = undefined;
+let textoAsteriscos = crearCadena.bind(null , "*", "*");
 
-let textoGuiones = undefined;
+let textoGuiones = crearCadena.bind(null, "-","-");
 
-let textoUnderscore = undefined;
-
+let textoUnderscore = crearCadena.bind(null, "_","_"); 
 
 
 // No modifiquen nada debajo de esta linea
