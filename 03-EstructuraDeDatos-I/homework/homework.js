@@ -36,13 +36,6 @@ function Queue(){
 // size: Devuelve el número de elementos que contiene la queue.
 this.queue= []
 
-Queue.prototype.enqueue= function(elemento){
-this.queue.push(elemento)//quiero agregar elemento a la cola 
-}
-Queue.prototype.dequeue= function(){
-return this.queue.shift()// shift eliminar primer elemento de la cola 
-
-}
 
 Queue.prototype.size= function(){
   return this.queue.length // contabilizar cuantos elementos tiene la cola 
