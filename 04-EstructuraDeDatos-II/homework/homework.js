@@ -1,6 +1,7 @@
 'use strict'
 
 const { hasEmbeddedError } = require("@11ty/eleventy/src/EleventyErrorUtil")
+const { setMaxListeners } = require("@11ty/eleventy/src/Util/AsyncEventEmitter")
 
 // Implementa la clase LinkedList
 // tiene metodos `add`, `remove`, y `search`
@@ -15,72 +16,69 @@ const { hasEmbeddedError } = require("@11ty/eleventy/src/EleventyErrorUtil")
 
 function LinkedList() {
   //creamos un construtor 
-this.head= null
-this.length= 0
+  this.head=null
+  this.length=0
 }
 
 function Node(value){
-this.value=value
-this.next= null
- 
+  this.next=null
+  this.value=value
 }
-LinkedList.prototype.add=function(data ){
-  let node= new Node(data)  //si la lista esta vacia 
-  if ( this.head=== null){
-    this.head=node
-  }// AHHHH!!!!! PERO SI LA LISTA NO ESTA VACIA  ENTONCES PREGUNTAMOS NO ESTA VACIA 
-  else {let current= this.head
-while(current.next){
-  current=current.next
+LinkedList.prototype.add= function(value){
+let node = new Node(value)
+
+if(this.head===null){
+this.head = node
 }
-current.next= node 
-  }
-this.length++
-return node 
-}
- LinkedList.prototype.remove= function(){/// primero debo recorre la lista  verificar si esta vacia 
-  //crear uan variable current 
+else {
   let current= this.head
 
-  if ( this.length===0 ) return null //el largo de la lista no tiene nada lo verificamos asi
+  while(current.next){
+    current=current.next
+  }
+  current.next= node 
   
-  //de lo contratio seria preguntar tiene algun elemento la lista si si lo tiene
+}
+this.length++
+return node
 
-  else if ( this.length===1){
-    let aux= current.value // aqui guardo ese valos o argument para luego retornarlo
-    this.head= null 
-    this.length--
-    return aux
+
+}
+LinkedList.prototype.remove= function(){
+  let current= this.head
+  if(this.length===0) return null
+  if (this.length===1){
+let aux= current.value
+this.head= null
+this.length--
+return aux
   }
   while(current.next.next){
-    current=current.next //de esta forma nos desplazamos por la lista y verificamos si tenemos un null delante del nodo 
-
+    current= current.next
   }
-  let aux = current.next.value// verifico el valor accinado a la lista 
-  current.next=null
-  this.length--
-  return aux
-
-
-  }
-
-
-  LinkedList.prototype.search = function(value) { //tercer nodo
-    let current = this.head;
-  
-    while(current) {
-      if(current.value === value) return current.value;
-  
-      else if(typeof value === 'function') {
-        if(value(current.value)) {
-          return current.value;
-        }
+  let aux = current.next.value
+current.next=null
+this.length--
+return aux
+}
+LinkedList.prototype.search=function(value)
+{
+  let current= this.head
+  while( current){
+    if(current.value===value)return current.dato
+    else if (typeof value=== "function"){
+      if(value(current.value)){
+          return current.value
       }
-      current = current.next;
     }
-    return null;
+    current=current.next
   }
- 
+  return null
+}
+
+
+
+
 
 
 
@@ -105,50 +103,8 @@ return node
 
 function HashTable() {
 
-  this.numBuckets = 35; // número de casilleros en la tabla
-  this.casilleros = [];
-}
-
-HashTable.prototype.hash = function(value) { //'foo'
-  var acumulador = 0;
-
-  for (let i = 0; i < value.length; i++) {
-    acumulador = acumulador + value.charCodeAt(i);    
-  }
-  return acumulador % this.numBuckets; //4
-}
-
-HashTable.prototype.set = function(key, value) {
-  if(typeof key !== 'string') {
-    throw new TypeError('Keys must be strings');
-  }
-
-  var posicion = this.hash(key);
-  this.casilleros[posicion] = this.casilleros[posicion] || [];
-  this.casilleros[posicion].unshift({
-    key: key,
-    value: value
-  })
-}
-
-HashTable.prototype.get = function(key) {
-  var posicion = this.hash(key);
-  for (let i = 0; i < this.casilleros[posicion].length; i++) {
-    if(this.casilleros[posicion][i].key === key) {
-      return this.casilleros[posicion][i].value
-    }
-  }
-
-  return false;
-}
-
-
-HashTable.prototype.hasKey = function(key) {
-  var elemento = this.get(key) // valor ó false
-
-  if(elemento) return true;
-
-  return false;
+  this.numBuckets=35
+  this.casillero=[]
 }
 
 

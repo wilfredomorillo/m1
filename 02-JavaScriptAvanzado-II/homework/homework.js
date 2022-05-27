@@ -9,10 +9,13 @@ function counter() {
   // ejemplo: const newCounter = counter();
   // newCounter(); // 1
   // newCounter(); // 2
- var couter = 1
- return function() {
-   return couter++
- }
+
+var couter=1
+return function(){
+  return couter ++
+}
+ 
+  
  
 }
 
@@ -27,21 +30,22 @@ function cacheFunction(cb) {
   // si invocas la function que retornaste con 5, adentro deberia invocar cb(5) y retornar 25.
   // si la invocas de nuevo con 5, deberia retornar 25 (guardado previament en el cache)
   // Tips, usá un objeto donde cada propiedad sea un argumento, y el valor el resultado.
-  // usá hasOwnProperty!= el metodo de un objetro 
+  // usá != el metodo de un objetro 
 /* crear un ojetos que sera nuestr cache lo cualñ es nuestro var cache= {}
 esta fincion recibe una funcion con un argumento qe sera cb
  creando una funcion auxiliar que va a reornar el valor de cb multiplicado por si mismo 
  y esta misma lo guardara en cache 
 */
-var cache= {}
-return function(x){
-  if(cache.hasOwnProperty(x)) {
-    return cache[x]}
-    var aux= cb(x)
-    cache[x]= aux
-    return aux
-  }
+var cache ={}
+ return function(x){
+   if(cache.hasOwnProperty(x))return  cache[x]
+      cache[x]=cb(x)
+      return cache[x]
+ }
+ 
 }
+
+
 
 
 

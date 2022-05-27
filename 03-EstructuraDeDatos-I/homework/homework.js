@@ -7,9 +7,9 @@ function nFactorial(n) {
   // devolvé el factorial de n (n!)
   // ej:
   // el factorial de 3 es 6 (3 * 2 * 1)
-  if (n===  1 || n ===0) { return 1}
-  
-  return n * nFactorial (n-1)
+  //n 1 ===1 y 0===0
+  if ( n===0) { return 1 }
+else {return n* nFactorial(n-1)}
 }
 
 function nFibonacci(n) {
@@ -18,15 +18,17 @@ function nFibonacci(n) {
   // nFibonacci(0) // 0  // el elemento 0 es cero
   // nFibonacci(1) // 1 // el elemento 1 es 1
   // nFibonacci(6) // 1 // el elemento 6 es 8
-if ( n===0) return 0
-if (n=== 1 ) return 1
- return nFibonacci(n-1) + nFibonacci (n-2)
+
  //secuencia fibonacci se puede resilver iterativamente osea 
  //con un for forech wile y cualquier otro metodo para para hacer un contador 
  // decimos que la secuenca fibonacci se resulve con recurcion ya q con esta podemos llamar nuevamente a la funcion 
- //y de esta forma poder tomar los elementos de dicha funcion y utilizarlos para resolver esto de una forma mas sensilla e intuitibamente 
-
-
+if(n===0) return 0
+if (n===1) {
+  return 1
+}
+else{
+  return nFibonacci(n-1) +nFibonacci(n-2)
+}
 }
 function Queue(){
 // Para esta parte no es necesario utilizar recursión.
@@ -36,14 +38,26 @@ function Queue(){
 // size: Devuelve el número de elementos que contiene la queue.
 this.queue= []
 
+Queue.prototype.enqueue=function(data){
+ this.queue.push(data)
 
+}
+
+}
+Queue.prototype.dequeue=function () {
+  return this.queue.shift()
+  
+}
 Queue.prototype.size= function(){
-  return this.queue.length // contabilizar cuantos elementos tiene la cola 
 
+  return this.queue.length
 }
 
 
-}
+
+
+
+
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------

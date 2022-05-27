@@ -2,37 +2,31 @@
 
 function BinarioADecimal(num) {
   // tu codigo aca
-  //para hacer de binario a decimal lo primero que devo hacer es determinar una variable
-  //esta me va a decir como leer el lumero binario y determinar o convertir de un strin o comentario a un arraty
-  // luego tengo q hacer un ciclo q me va a ir recorriendo este numero hasta alcance elsu exponente determinado 
-  //agrupa su numer} y concatenarlo al anterior 
-  //retormar el resultado 
-/*let data = num.split("").reverse()
-let resultado = 0
-for(var i = 0; i < data.length ; i++ ){
-  var dato = 2**i
-  resultado= resultado+ dato*data[i]
+let angelica= num.split("").reverse()
+let result=0
+for (let i = 0; i < angelica.length; i++) {
+ var queso= 2**i
+ result= result+ queso*angelica[i]
+
 }
-return resultado*/
-var decimal= 0
-for(var i = 0; i < num.length ; i++ ){
-  decimal=decimal + num[i] *2** (num.length-1-i)
-}
-return decimal 
+return result
+
 }
 
 function DecimalABinario(num) {
   // tu codigo aca
-  //para hacer de decimal a binario se tiene q 
-  //dividir por la base 2 quedarce con el resto y ir dividiendo hasta q no se pueda dividir mas 
-  //por lo que ecesitamos hacer un ciclo whaile (num >0) ir dividiendo el numero ente 2 redondear el resto y segur dividiendo 
-  let result= ""
-  while (num> 0){
-    result= (num %2)+ result
-    num=Math.floor(num/2)
-  }
-  return result
+let result =""
+
+while(num>0){
+   result = (num%2)+result
+  num= Math.floor(num/2)
+ 
 }
+return result
+}
+
+
+//no toques esto aqui abajo mi rey 
 module.exports = {
   BinarioADecimal,
   DecimalABinario,
